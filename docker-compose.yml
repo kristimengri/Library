@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: postgres-library
+    image: postgres
+    environment:
+      POSTGRES_USER: kent
+      POSTGRES_PASSWORD: kent
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_DB: library
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+    networks:
+      - library-network
+    restart: unless-stopped
+
+networks:
+  library-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+    driver: local
