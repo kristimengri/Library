@@ -1,39 +1,19 @@
 version: '3.8'
 
 services:
-  postgres:
-    container_name: postgres-library
-    image: postgres
-    environment:
-      POSTGRES_USER: kent
-      POSTGRES_PASSWORD: kent
-      POSTGRES_DB: library
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    ports:
-      - 5433:5432
-    networks:
-      - library-network
-    restart: unless-stopped
-
   spring-boot-app:
     build:
       context: ./path/to/your/spring-boot-app
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-library:5432/library
+      SPRING_DATASOURCE_URL: jdbc:postgresql://dpg-cs1a94dds78s73b4p7mg-a.oregon-postgres.render.com:5432/library_a0lc
       SPRING_DATASOURCE_USERNAME: kent
-      SPRING_DATASOURCE_PASSWORD: kent
+      SPRING_DATASOURCE_PASSWORD: Jl4RdsMR3r8fius4Gpwr9yjLJw2FpvHo
     networks:
       - library-network
-    depends_on:
-      - postgres
     restart: unless-stopped
     ports:
       - "8080:8080"
+
 networks:
   library-network:
     driver: bridge
-
-volumes:
-  postgres-data:
-    driver: local
