@@ -3,7 +3,7 @@ version: '3.8'
 services:
   spring-boot-app:
     build:
-      context: ./path/to/your/spring-boot-app
+      context: /home/kent/Desktop/library-app/Library
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://dpg-cs1a94dds78s73b4p7mg-a.oregon-postgres.render.com:5432/library_a0lc
       SPRING_DATASOURCE_USERNAME: kent
